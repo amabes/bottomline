@@ -51,3 +51,8 @@
 .reset {
   display: none;
 }
+
+.score-card {
+  display: none;
+  padding: 10px 0;
+}

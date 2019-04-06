@@ -7,16 +7,21 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Wack a Mole</h1>
-    <button id="play" class="btn primary" onclick="window.wackAMole.play()">
-      <span>Play</span>
-    </button>
-    <button id="stop" class="btn danger stop" onclick="window.wackAMole.stop()">
-      <span>Stop</span>
-    </button>
-    <button id="reset" class="btn secondary stop" onclick="window.wackAMole.reset()">
-      <span>Reset</span>
-    </button>
+    <h1>Wack a Mole (<span id="count-down"></span>)</h1>
+    <div>
+      <button id="play" class="btn primary" onclick="wackAMole.play()">
+        <span>Play</span>
+      </button>
+      <button id="stop" class="btn danger stop" onclick="wackAMole.stop()">
+        <span>Stop</span>
+      </button>
+      <button id="reset" class="btn secondary stop" onclick="wackAMole.reset()">
+        <span>Reset</span>
+      </button>
+    </div>
+    <div id="score-card" class="score-card">
+      You win!
+    </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="script.js"></script>
   </body>
