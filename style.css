@@ -1,12 +1,15 @@
 :root {
   --btn-primary: #2e86de;
   --btn-secondary: #8395a7;
+  --btn-danger: #ff6b6b;
 }
 
 .btn {
   border: 0;
   border-radius: 10px;
+  color: white;
   cursor: pointer;
+  display: inline-block;
   font-size: 14px;
   font-weight: bold;
   overflow: hidden;
@@ -31,7 +34,6 @@
 
 .btn.primary {
   background: var(--btn-primary);
-  color: white;
 }
 
 .btn.secondary {
@@ -39,6 +41,14 @@
   color: black;
 }
 
+.btn.danger {
+  background: var(--btn-danger);
+}
+
 .stop {
+  display: none;
+}
+
+.reset {
   display: none;
 }
