@@ -21,26 +21,30 @@ class Game {
     return this.timerCount;
   }
 
+  setDisplayById(id, styleProp) {
+    document.querySelector(id).style.display = styleProp;
+  }
+
   defaultButtons () {
-    document.querySelector('#play').style.display = 'inline-block';
-    document.querySelector('#stop').style.display = 'none';
-    document.querySelector('#reset').style.display = 'none';
+    this.setDisplayById('#play', 'inline-block');
+    this.setDisplayById('#stop', 'none');
+    this.setDisplayById('#reset', 'none');
   }
 
   gameTime() {
     switch(this.gameState) {
       case 'start':
         this.timer = setInterval(this.countDown.bind(this), 1000);
-        document.querySelector('#play').style.display = 'none';
-        document.querySelector('#stop').style.display = 'inline-block';
-        document.querySelector('#reset').style.display = 'inline-block';
+        this.setDisplayById('#play', 'none');
+        this.setDisplayById('#stop', 'inline-block');
+        this.setDisplayById('#reset', 'inline-block');
         console.log('start');
       break;
       case 'stop':
         clearInterval(this.timer);
-        document.querySelector('#play').style.display = 'inline-block';
-        document.querySelector('#stop').style.display = 'none';
-        document.querySelector('#reset').style.display = 'inline-block';
+        this.setDisplayById('#play', 'inline-block');
+        this.setDisplayById('#stop', 'none');
+        this.setDisplayById('#reset', 'inline-block');
         console.log('stop');
       break;
       case 'reset':
