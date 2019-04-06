@@ -6,7 +6,7 @@ class Game {
     this.timer = null;
     this.timerCount = 0;
 
-    this.timeRemaining();
+    this.setup();
   }
 
   countDown() {
@@ -99,6 +99,10 @@ class Game {
         console.log('default');
       break;
     }
+  }
+
+  setup() {
+    this.timeRemaining();
   }
 
   setGameState(state) {

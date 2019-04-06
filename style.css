@@ -1,8 +1,12 @@
 :root {
-  --btn-primary: #2e86de;
-  --btn-secondary: #8395a7;
-  --btn-danger: #ff6b6b;
+  --primary: #2e86de;
+  --secondary: #8395a7;
+  --danger: #ff6b6b;
 }
+
+/*************
+    BUTTONS
+**************/
 
 .btn {
   border: 0;
@@ -33,15 +37,15 @@
 }
 
 .btn.primary {
-  background: var(--btn-primary);
+  background: var(--primary);
 }
 
 .btn.secondary {
-  background: var(--btn-secondary);
+  background: var(--secondary);
 }
 
 .btn.danger {
-  background: var(--btn-danger);
+  background: var(--danger);
 }
 
 .stop {
@@ -52,7 +56,29 @@
   display: none;
 }
 
+/*************
+    SCORE CARD
+**************/
+
 .score-card {
   display: none;
   padding: 10px 0;
+}
+
+/*************
+    BOARD
+**************/
+
+.board {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+}
+
+.board .row div {
+  background-color: var(--secondary);
+  margin-bottom: 15px;
+  height: 100px;
+  width: 100px;
 }
