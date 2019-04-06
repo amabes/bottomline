@@ -18,7 +18,13 @@ body {
 
 .app {
   margin: 10px auto 0;
-  width: 400px;
+  width: 100%;
+}
+
+@media (min-width: 576px) {
+  .app {
+    width: 400px;
+  }
 }
 
 .indie-flower {
@@ -33,7 +39,6 @@ h1 {
 /*************
     BUTTONS
 **************/
-
 .btn {
   border: 0;
   border-radius: 10px;
@@ -85,7 +90,6 @@ h1 {
 /*************
     SCORE CARD
 **************/
-
 .score-card {
   display: none;
   padding: 10px 0;
@@ -94,7 +98,6 @@ h1 {
 /*************
     BOARD
 **************/
-
 .board {
   align-items: flex-start;
   background-color: var(--grey-dark);
@@ -122,39 +125,48 @@ h1 {
 /*************
     INFO
 **************/
-
-.outerWrap {
+.info-container {
   display: flex;
   justify-content: space-between;
   background: var(--light-blue-ballerina);
-  padding: 1rem;
+  padding: .25rem 1.5rem 1rem;
 }
 
-.scoreWrap,
-.timeWrap {
-  font-size: 30px;
+.info-container--elem {
+  font-size: 1.5rem;
 }
 
-.scoreWrap p,
-.timeWrap p {
+.info-container--elem p {
   margin: 0 0 .5rem;
   font-size: 1.5rem;
   min-width: 100px;
 }
 
-.scoreWrap span,
-.timeWrap span {
+.info-container--elem span {
   background: rgba(0,0,0,.4);
   color: white;
   display: block;
-  padding: .75rem 1rem;
+
+  padding: .5rem .75rem;
 }
 
+@media (min-width: 576px) {
+  .info-container {
+    padding: 1rem;
+  }
+
+  .info-container--elem {
+    font-size: 2rem;
+  }
+
+  .info-container--elem span {
+    padding: .75rem 1rem;
+  }
+}
 
 /*************
     ACTIONS
 **************/
-
 .actions {
   margin-top: 20px;
 }
