@@ -23,6 +23,10 @@ class Game {
     this.timerCount++;
     console.log('countDown', this.timerCount);
 
+    if (this.timerCount >= this.timeLimit) {
+      this.stop();
+    }
+
     return this.timerCount;
   }
 
@@ -47,6 +51,11 @@ class Game {
 
   play() {
     this.gameState = 'start';
+    this.gameTime(this.gameState);
+  }
+
+  stop() {
+    this.gameState = 'stop';
     this.gameTime(this.gameState);
   }
 
