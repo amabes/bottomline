@@ -1,8 +1,8 @@
 class Game {
   constructor() {
     // moleVisibility is random
-    this.timeLimit = 6; // seconds
-    this.gameState = null;// stop || start
+    this.timeLimit = 10; // seconds
+    this.gameState = null; // stop || start
     this.timer = null;
     this.timerCount = 0;
 
@@ -21,6 +21,29 @@ class Game {
     }
 
     this.timeRemaining();
+    this.randomSquare();
+  }
+
+  randomInteger(min, max) {
+    return Math.floor(min + Math.random()*(max + 1 - min));
+  }
+
+  resetSquare(square) {
+    square.className = '';
+  }
+
+  randomSquare() {
+    console.log('randomSquare');
+    var squares = document.querySelectorAll('#board .row div');
+    var square = squares[this.randomInteger(0, 8)];
+
+    square.className = 'active';
+
+    var that = this; // normally would use => and wouldn't need this hack
+
+    setTimeout(function() {
+      that.resetSquare(square);
+    },this.randomInteger(500, 1000));
   }
 
   timeRemaining() {
@@ -32,7 +55,7 @@ class Game {
   }
 
   buttonsHide() {
-    var btns = document.getElementsByClassName('btn');
+    var btns = document.querySelectorAll('.btn');
 
     Object.values(btns).forEach(function(btn) {
       btn.style.display = 'none';

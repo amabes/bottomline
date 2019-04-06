@@ -82,3 +82,7 @@
   height: 100px;
   width: 100px;
 }
+
+.board .row div.active {
+  background-color: var(--danger);
+}
