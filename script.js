@@ -90,6 +90,7 @@ class Game {
         clearInterval(this.timer);
         this.timerCount = 0;
         this.buttonsReset();
+        this.timeRemaining();
         this.scoreCardHide();
         console.log('reset');
       break;
