@@ -1,10 +1,11 @@
 class Game {
-  constructor() {
+  constructor(params) {
     // moleVisibility is random
     this.timeLimit = 10; // seconds
     this.gameState = null; // stop || start
     this.timer = null;
     this.timerCount = 0;
+    this.debug = (params && params.debug) ? params.debug : false;
 
     this.setup();
   }
@@ -151,4 +152,4 @@ class Game {
 
 }
 
-var wackAMole = new Game();
+var wackAMole = new Game({debug: true});

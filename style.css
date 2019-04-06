@@ -4,6 +4,10 @@
   --danger: #ff6b6b;
 }
 
+body {
+  text-align: center;
+}
+
 /*************
     BUTTONS
 **************/
@@ -73,6 +77,7 @@
   align-items: flex-start;
   display: flex;
   justify-content: space-between;
+  margin: 0 auto;
   width: 400px;
 }
 
