@@ -39,7 +39,8 @@ class Game {
       case 'stop':
         clearInterval(this.timer);
         document.querySelector('#play').style.display = 'inline-block';
-        document.querySelector('#reset').style.display = 'block';
+        document.querySelector('#stop').style.display = 'none';
+        document.querySelector('#reset').style.display = 'inline-block';
         console.log('stop');
       break;
       case 'reset':
