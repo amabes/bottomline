@@ -4,11 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Wack a Mole</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <h1>Wack a Mole</h1>
-    <button onclick="window.wackAMole.play()">
-      Play
+    <button id="play" class="btn primary" onclick="window.wackAMole.play()">
+      <span>Play</span>
+    </button>
+    <button id="stop" class="btn secondary stop" onclick="window.wackAMole.stop()">
+      <span>Stop</span>
     </button>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="script.js"></script>

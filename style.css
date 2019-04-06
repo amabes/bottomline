@@ -1,0 +1,44 @@
+:root {
+  --btn-primary: #2e86de;
+  --btn-secondary: #8395a7;
+}
+
+.btn {
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  overflow: hidden;
+  padding: 10px 20px;
+  position: relative;
+}
+
+.btn span {
+  position: relative;
+  z-index: 1;
+}
+
+.btn:hover:before {
+  background: rgba(0,0,0, .2);
+  content: '';
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.btn.primary {
+  background: var(--btn-primary);
+  color: white;
+}
+
+.btn.secondary {
+  background: var(--btn-secondary);
+  color: black;
+}
+
+.stop {
+  display: none;
+}
