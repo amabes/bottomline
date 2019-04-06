@@ -1,15 +1,6 @@
-var gameState = 'new'; // stop || start
-var timelimit = 60;
-// moleVisibility is random
-function gameTime (gameState) {
-  switch(gameState) {
-    case 'new':
-    return
-  }
-}
-
 class Game {
   constructor() {
+    // moleVisibility is random
     this.timeLimit = 6; // seconds
     this.gameState = null;// stop || start
     this.timer = null;
@@ -41,6 +32,8 @@ class Game {
         console.log('stop');
       break;
       case 'reset':
+        clearInterval(this.timer);
+        this.timerCount = 0;
         console.log('reset');
       break;
       default:
@@ -51,12 +44,12 @@ class Game {
 
   play() {
     this.gameState = 'start';
-    this.gameTime(this.gameState);
+    this.gameTime();
   }
 
   stop() {
     this.gameState = 'stop';
-    this.gameTime(this.gameState);
+    this.gameTime();
   }
 
 }
