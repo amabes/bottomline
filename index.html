@@ -4,48 +4,59 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Wack a Mole</title>
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div>
-      <h1>Wack a Mole (<span id="count-down"></span>)</h1>
-    </div>
+    <div class="app">
+      <h1 class="indie-flower">Wack a Mole</h1>
 
-    <!-- board -->
-    <div id="board" class="board">
-      <div class="row">
-        <div></div>
-        <div></div>
-        <div></div>
+      <!-- board -->
+      <div id="board" class="board">
+        <div class="row">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div class="row">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div class="row">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
       </div>
-      <div class="row">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-      <div class="row">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    </div>
 
-    <!-- actions -->
-    <div>
-      <button id="play" class="btn primary" onclick="wackAMole.play()">
-        <span>Play</span>
-      </button>
-      <button id="stop" class="btn danger stop" onclick="wackAMole.stop()">
-        <span>Stop</span>
-      </button>
-      <button id="reset" class="btn secondary stop" onclick="wackAMole.reset()">
-        <span>Reset</span>
-      </button>
-    </div>
+      <div class="outerWrap">
+        <div class="scoreWrap">
+          <p>
+            <small>Score</small>
+          </p>
+          <span class="score">0</span>
+        </div>
+        <div class="timeWrap">
+          <p>
+            <small>Time left</small>
+          </p>
+          <span id="count-down" class="time"></span>
+        </div>
+      </div>
 
-    <!-- score card -->
-    <div id="score-card" class="score-card">
-      You win!
+      <!-- actions -->
+      <div class="actions">
+        <button id="play" class="btn primary" onclick="wackAMole.play()">
+          <span>Play</span>
+        </button>
+        <button id="stop" class="btn danger stop" onclick="wackAMole.stop()">
+          <span>Stop</span>
+        </button>
+        <button id="reset" class="btn secondary stop" onclick="wackAMole.reset()">
+          <span>Reset</span>
+        </button>
+      </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

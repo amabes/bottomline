@@ -1,8 +1,7 @@
 class Game {
   constructor(params) {
-    // moleVisibility is random
     this.timeLimit = 10; // seconds
-    this.gameState = null; // stop || start
+    this.gameState = null; // start, stop, end, reset
     this.timer = null;
     this.timerCount = 0;
     this.debug = (params && params.debug) ? params.debug : false;
@@ -34,7 +33,6 @@ class Game {
   }
 
   randomSquare() {
-    console.log('randomSquare');
     var squares = document.querySelectorAll('#board .row div');
     var square = squares[this.randomInteger(0, 8)];
 
@@ -84,13 +82,6 @@ class Game {
     this.setDisplayById('#stop', 'inline-block');
   }
 
-  scoreCardShow() {
-    this.setDisplayById('#score-card', 'block');
-  }
-  scoreCardHide() {
-    this.setDisplayById('#score-card', 'none');
-  }
-
   gameTime() {
     switch(this.gameState) {
       case 'start':
@@ -106,7 +97,6 @@ class Game {
       break;
       case 'end':
         clearInterval(this.timer);
-        this.scoreCardShow();
         this.buttonsEnd();
         console.log('end');
       break;
@@ -115,18 +105,17 @@ class Game {
         this.timerCount = 0;
         this.buttonsReset();
         this.timeRemaining();
-        this.scoreCardHide();
         console.log('reset');
       break;
       default:
         this.timeRemaining();
-        console.log('default');
+        console.log('default / setup');
       break;
     }
   }
 
   setup() {
-    this.timeRemaining();
+    this.gameTime();
   }
 
   setGameState(state) {

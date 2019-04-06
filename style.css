@@ -1,11 +1,33 @@
+/* https://flatuicolors.com/palette/ca */
 :root {
   --primary: #2e86de;
   --secondary: #8395a7;
   --danger: #ff6b6b;
+  --grey-dark: #576574;
+  --light-blue-ballerina: #c8d6e5;
+  --casandora-yellow: #feca57;
+  --wild-caribbean-green: #1dd1a1;
+  --dark-mountain-meadow: #10ac84;
 }
 
 body {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
   text-align: center;
+}
+
+.app {
+  margin: 10px auto 0;
+  width: 400px;
+}
+
+.indie-flower {
+  font-family: 'Indie Flower', cursive;
+}
+
+h1 {
+  font-size: 3rem;
+  margin: 0;
 }
 
 /*************
@@ -18,10 +40,10 @@ body {
   color: white;
   cursor: pointer;
   display: inline-block;
-  font-size: 14px;
+  font-size: 1.25rem;
   font-weight: bold;
   overflow: hidden;
-  padding: 10px 20px;
+  padding: .75rem 2rem;
   position: relative;
 }
 
@@ -41,7 +63,7 @@ body {
 }
 
 .btn.primary {
-  background: var(--primary);
+  background: var(--dark-mountain-meadow);
 }
 
 .btn.secondary {
@@ -75,10 +97,11 @@ body {
 
 .board {
   align-items: flex-start;
+  background-color: var(--grey-dark);
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
-  width: 400px;
+  padding: 20px;
 }
 
 .board .row div {
@@ -89,5 +112,49 @@ body {
 }
 
 .board .row div.active {
-  background-color: var(--danger);
+  background-color: var(--wild-caribbean-green);
+}
+
+.board .row div:last-child {
+  margin: 0;
+}
+
+/*************
+    INFO
+**************/
+
+.outerWrap {
+  display: flex;
+  justify-content: space-between;
+  background: var(--light-blue-ballerina);
+  padding: 1rem;
+}
+
+.scoreWrap,
+.timeWrap {
+  font-size: 30px;
+}
+
+.scoreWrap p,
+.timeWrap p {
+  margin: 0 0 .5rem;
+  font-size: 1.5rem;
+  min-width: 100px;
+}
+
+.scoreWrap span,
+.timeWrap span {
+  background: rgba(0,0,0,.4);
+  color: white;
+  display: block;
+  padding: .75rem 1rem;
+}
+
+
+/*************
+    ACTIONS
+**************/
+
+.actions {
+  margin-top: 20px;
 }
