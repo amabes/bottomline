@@ -1,6 +1,8 @@
 # Wack a Mole
 When a square turns green click it.
 
+Play: https://amabes.github.io/bottomline/
+
 ## Getting started
 Install dependencies & local development.
 
@@ -14,6 +16,8 @@ Pass `{debug:true}` as an argument to `Game`, ex:
 ```
 const wackAMole = new Game({debug:true});
 ```
+
+![Wack a Mole](/imgs/screenshot.jpg)
 
 =================================================
 # Instructions
