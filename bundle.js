@@ -1,8 +1,42 @@
 (function () {
   'use strict';
 
+  function setDisplayById(id, styleProp) {
+    document.querySelector(id).style.display = styleProp;
+  }
+
+  function updateScore(score) {
+    document.querySelector('#score').innerHTML = score;
+  }
+
   function randomInteger(min, max) {
     return Math.floor(min + Math.random()*(max + 1 - min));
+  }
+
+  function buttonsHide() {
+    Array.from(document.querySelectorAll('.action-btn'), btn => {
+      btn.style.display = 'none';
+    });
+  }
+
+  function buttons(state) {
+    buttonsHide();
+
+    switch(state) {
+      case 'start':
+        return setDisplayById('#stop', 'inline-block');
+      break;
+      case 'stop':
+        setDisplayById('#start', 'inline-block');
+        setDisplayById('#reset', 'inline-block');
+      break;
+      case 'end':
+        return setDisplayById('#reset', 'inline-block');
+      case 'reset':
+        return setDisplayById('#start', 'inline-block');
+      default:
+      break;
+    }
   }
 
   class Game {
@@ -20,32 +54,26 @@
     bindEventListener(square) {
       const checkMark = '<i class="fas fa-check-circle"></i>';
 
-      square.addEventListener('click', () => {
-        if (square.className === 'active' && this.timer !== 0) {
-          square.innerHTML = checkMark;
-          square.className = '';
-          this.increaseScore();
-          setTimeout(() => {
-            square.innerHTML = '';
-          }, 150);
-          if (this.debug) console.log('[VALID] click event');
-        }
-      });
+      if (square.className === 'active' && this.timer !== 0) {
+        square.innerHTML = checkMark;
+        square.className = '';
+        this.increaseScore();
+        setTimeout(() => {
+          square.innerHTML = '';
+        }, 150);
+        if (this.debug) console.log('[VALID] click event');
+      }
     }
 
     increaseScore() {
       this.score++;
       if (this.debug) console.log('score', this.score);
-      this.updateScore();
+      updateScore(this.score);
     }
 
     resetScore() {
       this.score = 0;
-      this.updateScore();
-    }
-
-    updateScore() {
-      document.querySelector('#score').innerHTML = this.score;
+      updateScore(this.score);
     }
 
     countDown() {
@@ -66,9 +94,10 @@
 
     randomSquare() {
       const squares = document.querySelectorAll('#board .row div');
-      const square = squares[randomInteger(0, squares.length - 1)];
+      const randomIndex = randomInteger(0, squares.length - 1);
+      const square = squares[randomIndex];
+      if (this.debug) console.log('randomIndex', randomIndex);
 
-      this.bindEventListener(square);
       square.className = 'active';
 
       setTimeout(() => {
@@ -80,12 +109,10 @@
       document.querySelector('#count-down').innerHTML = this.timeLimit - this.timerCount;
     }
 
-    
-
     gameTime() {
       if (this.debug) console.log('state', this.state);
 
-      this.buttons();
+      buttons(this.state);
 
       switch(this.state) {
         case 'start':
@@ -113,14 +140,16 @@
     setup() {
       this.gameTime();
 
-      document.querySelector('#start').addEventListener('click', () => {
-        this.setState('start');
+      Array.from(document.querySelectorAll('.action-btn'), button => {
+        button.addEventListener('click', () => {
+          this.setState(button.dataset.state);
+        });
       });
-      document.querySelector('#stop').addEventListener('click', () => {
-        this.setState('stop');
-      });
-      document.querySelector('#reset').addEventListener('click', () => {
-        this.setState('reset');
+
+      Array.from(document.querySelectorAll('#board .row div'), square => {
+        square.addEventListener('click', () => {
+          this.bindEventListener(square);
+        });
       });
     }
 
@@ -128,7 +157,6 @@
       this.state = state;
       this.gameTime();
     }
-
   }
 
   const wackAMole = new Game();
