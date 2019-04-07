@@ -2,31 +2,31 @@
   "name": "bottomline",
   "version": "1.0.0",
   "description": "Click a \"mole\" as it appears. The amount of time each mole stays visible should be random. The game should have a time limit. There should be controls available to start, stop and reset the game.",
-  "main": "script.js",
   "scripts": {
-    "start": "npm run build && npm run server",
-    "server": "http-server -o -c-1",
-    "build": "npx babel src --out-dir js --presets=@babel/env",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rollup -c",
+    "watch": "rollup -c -w",
+    "dev": "npm-run-all --parallel start watch",
+    "start": "serve public",
+    "deploy": "gh-pages -d public"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/amabes/bottomline.git"
+    "url": "git@github.com:amabes/bottomline.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Alan Mabry",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/amabes/bottomline/issues"
   },
   "homepage": "https://github.com/amabes/bottomline#readme",
   "devDependencies": {
-    "@babel/cli": "^7.4.3",
-    "@babel/core": "^7.4.3",
-    "@babel/preset-env": "^7.4.3",
-    "http-server": "^0.11.1"
-  },
-  "dependencies": {
-    "@babel/polyfill": "^7.4.3"
+    "gh-pages": "^2.0.1",
+    "npm-run-all": "^4.1.5",
+    "rollup": "^1.5.0",
+    "rollup-plugin-commonjs": "^9.2.1",
+    "rollup-plugin-node-resolve": "^4.0.1",
+    "rollup-plugin-terser": "^4.0.4",
+    "serve": "^10.1.2"
   }
 }

@@ -6,8 +6,16 @@ Play: https://amabes.github.io/bottomline/
 ## Getting started
 Install dependencies & local development.
 
+Local: http://localhost:5000
+
 ```
-npm install && npm start
+npm run dev
+```
+
+## Deploy to Github pages
+
+```
+npm run deploy
 ```
 
 ## Debugging
@@ -17,7 +25,7 @@ Pass `{debug:true}` as an argument to `Game`, ex:
 const wackAMole = new Game({debug:true});
 ```
 
-![Wack a Mole](/imgs/screenshot.jpg)
+![Wack a Mole](/screenshot.jpg)
 
 =================================================
 # Instructions
