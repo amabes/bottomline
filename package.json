@@ -4,6 +4,8 @@
   "description": "Click a \"mole\" as it appears. The amount of time each mole stays visible should be random. The game should have a time limit. There should be controls available to start, stop and reset the game.",
   "main": "script.js",
   "scripts": {
+    "start": "npm install && npm run build && npm start",
+    "server": "http-server -o",
     "build": "npx babel src --out-dir js --presets=@babel/env",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,7 +23,8 @@
   "devDependencies": {
     "@babel/cli": "^7.4.3",
     "@babel/core": "^7.4.3",
-    "@babel/preset-env": "^7.4.3"
+    "@babel/preset-env": "^7.4.3",
+    "http-server": "^0.11.1"
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.3"

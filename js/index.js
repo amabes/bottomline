@@ -27,9 +27,9 @@ function () {
     key: "countDown",
     value: function countDown() {
       var timeLimit = this.timeLimit;
-      console.log('countDown', this.timeLimit);
+      console.log('timeLimit', this.timeLimit);
       this.timerCount++;
-      console.log('countDown', this.timerCount);
+      console.log('timerCount', this.timerCount);
 
       if (this.timerCount >= this.timeLimit) {
         this.end();

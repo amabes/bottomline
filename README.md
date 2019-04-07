@@ -1,9 +1,7 @@
 # Wack a Mole
 
-
-Transpile ES2015+
 ```
-npm run build
+npm start
 ```
 
 =================================================
