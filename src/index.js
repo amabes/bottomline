@@ -21,16 +21,14 @@ class Game {
         setTimeout(() => {
           square.innerHTML = '';
         }, 150)
-        console.log('[VALID] click event');
-      } else {
-        console.error('[NOT VALID] click event');
+        if (this.debug) console.log('[VALID] click event');
       }
     });
   }
 
   increaseScore() {
     this.score++;
-    console.log('score', this.score);
+    if (this.debug) console.log('score', this.score);
     this.updateScore();
   }
 
@@ -45,7 +43,7 @@ class Game {
 
   countDown() {
     this.timerCount++;
-    console.log('timerCount', this.timerCount);
+    if (this.debug) console.log('timerCount', this.timerCount);
 
     if (this.timerCount >= this.timeLimit) {
       this.end();
@@ -119,18 +117,18 @@ class Game {
         this.timeRemaining();
         this.timer = setInterval(this.countDown.bind(this), 1000);
         this.buttonsStart();
-        console.log('start');
+        if (this.debug) console.log('start');
       break;
       case 'stop':
         clearInterval(this.timer);
-        console.log(this.timer);
+        if (this.debug) console.log(this.timer);
         this.buttonsStop();
-        console.log('stop');
+        if (this.debug) console.log('stop');
       break;
       case 'end':
         clearInterval(this.timer);
         this.buttonsEnd();
-        console.log('end');
+        if (this.debug) console.log('end');
       break;
       case 'reset':
         clearInterval(this.timer);
@@ -139,11 +137,11 @@ class Game {
         this.resetScore();
         this.buttonsReset();
         this.timeRemaining();
-        console.log('reset');
+        if (this.debug) console.log('reset');
       break;
       default:
         this.timeRemaining();
-        console.log('setup');
+        if (this.debug) console.log('setup');
       break;
     }
   }
@@ -175,4 +173,4 @@ class Game {
 
 }
 
-const wackAMole = new Game({debug: true});
+const wackAMole = new Game();

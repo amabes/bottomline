@@ -1,7 +1,18 @@
 # Wack a Mole
+When a square turns green click it.
+
+## Getting started
+Install dependencies & local development.
 
 ```
 npm install && npm start
+```
+
+## Debugging
+
+Pass `{debug:true}` as an argument to `Game`, ex:
+```
+const wackAMole = new Game({debug:true});
 ```
 
 =================================================

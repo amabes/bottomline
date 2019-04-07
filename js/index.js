@@ -38,10 +38,8 @@ function () {
 
           setTimeout(function () {
             square.innerHTML = '';
-          }, 250);
-          console.log('[VALID] click event');
-        } else {
-          console.error('[NOT VALID] click event');
+          }, 150);
+          if (_this.debug) console.log('[VALID] click event');
         }
       });
     }
@@ -49,7 +47,7 @@ function () {
     key: "increaseScore",
     value: function increaseScore() {
       this.score++;
-      console.log('score', this.score);
+      if (this.debug) console.log('score', this.score);
       this.updateScore();
     }
   }, {
@@ -67,7 +65,7 @@ function () {
     key: "countDown",
     value: function countDown() {
       this.timerCount++;
-      console.log('timerCount', this.timerCount);
+      if (this.debug) console.log('timerCount', this.timerCount);
 
       if (this.timerCount >= this.timeLimit) {
         this.end();
@@ -150,20 +148,20 @@ function () {
           this.timeRemaining();
           this.timer = setInterval(this.countDown.bind(this), 1000);
           this.buttonsStart();
-          console.log('start');
+          if (this.debug) console.log('start');
           break;
 
         case 'stop':
           clearInterval(this.timer);
-          console.log(this.timer);
+          if (this.debug) console.log(this.timer);
           this.buttonsStop();
-          console.log('stop');
+          if (this.debug) console.log('stop');
           break;
 
         case 'end':
           clearInterval(this.timer);
           this.buttonsEnd();
-          console.log('end');
+          if (this.debug) console.log('end');
           break;
 
         case 'reset':
@@ -173,12 +171,12 @@ function () {
           this.resetScore();
           this.buttonsReset();
           this.timeRemaining();
-          console.log('reset');
+          if (this.debug) console.log('reset');
           break;
 
         default:
           this.timeRemaining();
-          console.log('setup');
+          if (this.debug) console.log('setup');
           break;
       }
     }
@@ -218,6 +216,4 @@ function () {
   return Game;
 }();
 
-var wackAMole = new Game({
-  debug: true
-});
+var wackAMole = new Game();
