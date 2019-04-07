@@ -16,17 +16,15 @@ class Game {
   bindEventListener(square) {
     const checkMark = '<i class="fas fa-check-circle"></i>';
 
-    square.addEventListener('click', () => {
-      if (square.className === 'active' && this.timer !== 0) {
-        square.innerHTML = checkMark;
-        square.className = '';
-        this.increaseScore();
-        setTimeout(() => {
-          square.innerHTML = '';
-        }, 150)
-        if (this.debug) console.log('[VALID] click event');
-      }
-    });
+    if (square.className === 'active' && this.timer !== 0) {
+      square.innerHTML = checkMark;
+      square.className = '';
+      this.increaseScore();
+      setTimeout(() => {
+        square.innerHTML = '';
+      }, 150)
+      if (this.debug) console.log('[VALID] click event');
+    }
   }
 
   increaseScore() {
@@ -58,9 +56,10 @@ class Game {
 
   randomSquare() {
     const squares = document.querySelectorAll('#board .row div');
-    const square = squares[randomInteger(0, squares.length - 1)];
+    const randomIndex = randomInteger(0, squares.length - 1);
+    const square = squares[randomIndex];
+    if (this.debug) console.log('randomIndex', randomIndex);
 
-    this.bindEventListener(square);
     square.className = 'active';
 
     setTimeout(() => {
@@ -108,13 +107,18 @@ class Game {
         this.setState(button.dataset.state);
       });
     });
+
+    Array.from(document.querySelectorAll('#board .row div'), square => {
+      square.addEventListener('click', () => {
+        this.bindEventListener(square);
+      });
+    });
   }
 
   setState(state) {
     this.state = state;
     this.gameTime();
   }
-
 }
 
 const wackAMole = new Game();
