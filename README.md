@@ -1,7 +1,7 @@
 # Wack a Mole
 
 ```
-npm start
+npm install && npm start
 ```
 
 =================================================

@@ -16,7 +16,7 @@ function () {
 
     this.gameState = null; // start, stop, end, reset
 
-    this.timer = null;
+    this.timer = 0;
     this.timerCount = 0;
     this.score = 0;
     this.debug = params && params.debug ? params.debug : false;
@@ -24,10 +24,48 @@ function () {
   }
 
   _createClass(Game, [{
+    key: "bindEventListener",
+    value: function bindEventListener(square) {
+      var _this = this;
+
+      var checkMark = '<i class="fas fa-check-circle"></i>';
+      square.addEventListener('click', function () {
+        if (square.className === 'active' && _this.timer !== 0) {
+          square.innerHTML = checkMark;
+          square.className = '';
+
+          _this.increaseScore();
+
+          setTimeout(function () {
+            square.innerHTML = '';
+          }, 250);
+          console.log('[VALID] click event');
+        } else {
+          console.error('[NOT VALID] click event');
+        }
+      });
+    }
+  }, {
+    key: "increaseScore",
+    value: function increaseScore() {
+      this.score++;
+      console.log('score', this.score);
+      this.updateScore();
+    }
+  }, {
+    key: "resetScore",
+    value: function resetScore() {
+      this.score = 0;
+      this.updateScore();
+    }
+  }, {
+    key: "updateScore",
+    value: function updateScore() {
+      document.querySelector('#score').innerHTML = this.score;
+    }
+  }, {
     key: "countDown",
     value: function countDown() {
-      var timeLimit = this.timeLimit;
-      console.log('timeLimit', this.timeLimit);
       this.timerCount++;
       console.log('timerCount', this.timerCount);
 
@@ -51,13 +89,14 @@ function () {
   }, {
     key: "randomSquare",
     value: function randomSquare() {
-      var _this = this;
+      var _this2 = this;
 
       var squares = document.querySelectorAll('#board .row div');
       var square = squares[this.randomInteger(0, 8)];
+      this.bindEventListener(square);
       square.className = 'active';
       setTimeout(function () {
-        _this.resetSquare(square);
+        _this2.resetSquare(square);
       }, this.randomInteger(500, 1000));
     }
   }, {
@@ -116,6 +155,7 @@ function () {
 
         case 'stop':
           clearInterval(this.timer);
+          console.log(this.timer);
           this.buttonsStop();
           console.log('stop');
           break;
@@ -128,7 +168,9 @@ function () {
 
         case 'reset':
           clearInterval(this.timer);
+          this.timer = 0;
           this.timerCount = 0;
+          this.resetScore();
           this.buttonsReset();
           this.timeRemaining();
           console.log('reset');

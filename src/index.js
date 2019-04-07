@@ -2,7 +2,7 @@ class Game {
   constructor(params) {
     this.timeLimit = 10; // seconds
     this.gameState = null; // start, stop, end, reset
-    this.timer = null;
+    this.timer = 0;
     this.timerCount = 0;
     this.score = 0;
     this.debug = (params && params.debug) ? params.debug : false;
@@ -10,10 +10,40 @@ class Game {
     this.setup();
   }
 
-  countDown() {
-    var timeLimit = this.timeLimit;
-    console.log('timeLimit', this.timeLimit);
+  bindEventListener(square) {
+    const checkMark = '<i class="fas fa-check-circle"></i>';
 
+    square.addEventListener('click', () => {
+      if (square.className === 'active' && this.timer !== 0) {
+        square.innerHTML = checkMark;
+        square.className = '';
+        this.increaseScore();
+        setTimeout(() => {
+          square.innerHTML = '';
+        }, 150)
+        console.log('[VALID] click event');
+      } else {
+        console.error('[NOT VALID] click event');
+      }
+    });
+  }
+
+  increaseScore() {
+    this.score++;
+    console.log('score', this.score);
+    this.updateScore();
+  }
+
+  resetScore() {
+    this.score = 0;
+    this.updateScore();
+  }
+
+  updateScore() {
+    document.querySelector('#score').innerHTML = this.score;
+  }
+
+  countDown() {
     this.timerCount++;
     console.log('timerCount', this.timerCount);
 
@@ -34,8 +64,10 @@ class Game {
   }
 
   randomSquare() {
-    var squares = document.querySelectorAll('#board .row div');
-    var square = squares[this.randomInteger(0, 8)];
+    const squares = document.querySelectorAll('#board .row div');
+    const square = squares[this.randomInteger(0, 8)];
+
+    this.bindEventListener(square);
 
     square.className = 'active';
 
@@ -53,7 +85,7 @@ class Game {
   }
 
   buttonsHide() {
-    var btns = document.querySelectorAll('.btn');
+    const btns = document.querySelectorAll('.btn');
 
     Object.values(btns).forEach(btn => {
       btn.style.display = 'none';
@@ -91,6 +123,7 @@ class Game {
       break;
       case 'stop':
         clearInterval(this.timer);
+        console.log(this.timer);
         this.buttonsStop();
         console.log('stop');
       break;
@@ -101,7 +134,9 @@ class Game {
       break;
       case 'reset':
         clearInterval(this.timer);
+        this.timer = 0;
         this.timerCount = 0;
+        this.resetScore();
         this.buttonsReset();
         this.timeRemaining();
         console.log('reset');
@@ -140,4 +175,4 @@ class Game {
 
 }
 
-var wackAMole = new Game({debug: true});
+const wackAMole = new Game({debug: true});

@@ -100,7 +100,13 @@ h1 {
 }
 
 .board .row div {
+  align-items: center;
   background-color: var(--secondary);
+  color: var(--wild-caribbean-green);
+  cursor: pointer;
+  display: flex;
+  font-size: 3rem;
+  justify-content: center;
   margin-bottom: 15px;
   height: 100px;
   width: 100px;
