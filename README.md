@@ -1,5 +1,14 @@
 # Wack a Mole
 
+
+Transpile ES2015+
+```
+npm run build
+```
+
+=================================================
+# Instructions
+
 Click a "mole" as it appears. The amount of time each mole stays visible should be random. The game should have a time limit. There should be controls available to start, stop and reset the game.
 
 ## Requirements:

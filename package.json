@@ -1,0 +1,29 @@
+{
+  "name": "bottomline",
+  "version": "1.0.0",
+  "description": "Click a \"mole\" as it appears. The amount of time each mole stays visible should be random. The game should have a time limit. There should be controls available to start, stop and reset the game.",
+  "main": "script.js",
+  "scripts": {
+    "build": "npx babel src --out-dir js --presets=@babel/env",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amabes/bottomline.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amabes/bottomline/issues"
+  },
+  "homepage": "https://github.com/amabes/bottomline#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.4.3",
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.4.3"
+  }
+}

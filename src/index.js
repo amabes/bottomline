@@ -4,6 +4,7 @@ class Game {
     this.gameState = null; // start, stop, end, reset
     this.timer = null;
     this.timerCount = 0;
+    this.score = 0;
     this.debug = (params && params.debug) ? params.debug : false;
 
     this.setup();
@@ -11,10 +12,10 @@ class Game {
 
   countDown() {
     var timeLimit = this.timeLimit;
-    console.log('countDown', this.timeLimit);
+    console.log('timeLimit', this.timeLimit);
 
     this.timerCount++;
-    console.log('countDown', this.timerCount);
+    console.log('timerCount', this.timerCount);
 
     if (this.timerCount >= this.timeLimit) {
       this.end();
@@ -38,10 +39,8 @@ class Game {
 
     square.className = 'active';
 
-    var that = this; // normally would use => and wouldn't need this hack
-
-    setTimeout(function() {
-      that.resetSquare(square);
+    setTimeout(() => {
+      this.resetSquare(square);
     },this.randomInteger(500, 1000));
   }
 
@@ -56,7 +55,7 @@ class Game {
   buttonsHide() {
     var btns = document.querySelectorAll('.btn');
 
-    Object.values(btns).forEach(function(btn) {
+    Object.values(btns).forEach(btn => {
       btn.style.display = 'none';
     });
   }
@@ -109,7 +108,7 @@ class Game {
       break;
       default:
         this.timeRemaining();
-        console.log('default / setup');
+        console.log('setup');
       break;
     }
   }
