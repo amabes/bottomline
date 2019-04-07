@@ -79,14 +79,6 @@ h1 {
   background: var(--danger);
 }
 
-.stop {
-  display: none;
-}
-
-.reset {
-  display: none;
-}
-
 /*************
     SCORE CARD
 **************/
