@@ -1,0 +1,170 @@
+/* https://flatuicolors.com/palette/ca */
+:root {
+  --primary: #2e86de;
+  --secondary: #8395a7;
+  --danger: #ff6b6b;
+  --grey-dark: #576574;
+  --light-blue-ballerina: #c8d6e5;
+  --casandora-yellow: #feca57;
+  --wild-caribbean-green: #1dd1a1;
+  --dark-mountain-meadow: #10ac84;
+}
+
+body {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+  text-align: center;
+}
+
+.app {
+  margin: 10px auto 0;
+  width: 100%;
+}
+
+@media (min-width: 576px) {
+  .app {
+    width: 400px;
+  }
+}
+
+.indie-flower {
+  font-family: 'Indie Flower', cursive;
+}
+
+h1 {
+  font-size: 3rem;
+  margin: 0;
+}
+
+/*************
+    BUTTONS
+**************/
+.btn {
+  border: 0;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.25rem;
+  font-weight: bold;
+  overflow: hidden;
+  padding: .75rem 2rem;
+  position: relative;
+}
+
+.btn span {
+  position: relative;
+  z-index: 1;
+}
+
+.btn:hover:before {
+  background: rgba(0,0,0, .2);
+  content: '';
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.btn.primary {
+  background: var(--dark-mountain-meadow);
+}
+
+.btn.secondary {
+  background: var(--secondary);
+}
+
+.btn.danger {
+  background: var(--danger);
+}
+
+/*************
+    SCORE CARD
+**************/
+.score-card {
+  display: none;
+  padding: 10px 0;
+}
+
+/*************
+    BOARD
+**************/
+.board {
+  align-items: flex-start;
+  background-color: var(--grey-dark);
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.board .row div {
+  align-items: center;
+  background-color: var(--secondary);
+  color: var(--wild-caribbean-green);
+  cursor: pointer;
+  display: flex;
+  font-size: 3rem;
+  justify-content: center;
+  margin-bottom: 15px;
+  height: 100px;
+  width: 100px;
+}
+
+.board .row div.active {
+  background-color: var(--wild-caribbean-green);
+}
+
+.board .row div:last-child {
+  margin: 0;
+}
+
+/*************
+    INFO
+**************/
+.info-container {
+  display: flex;
+  justify-content: space-between;
+  background: var(--light-blue-ballerina);
+  padding: .25rem 1.5rem 1rem;
+}
+
+.info-container--elem {
+  font-size: 1.5rem;
+}
+
+.info-container--elem p {
+  margin: 0 0 .5rem;
+  font-size: 1.5rem;
+  min-width: 100px;
+}
+
+.info-container--elem span {
+  background: rgba(0,0,0,.4);
+  color: white;
+  display: block;
+
+  padding: .5rem .75rem;
+}
+
+@media (min-width: 576px) {
+  .info-container {
+    padding: 1rem;
+  }
+
+  .info-container--elem {
+    font-size: 2rem;
+  }
+
+  .info-container--elem span {
+    padding: .75rem 1rem;
+  }
+}
+
+/*************
+    ACTIONS
+**************/
+.actions {
+  margin-top: 20px;
+}
