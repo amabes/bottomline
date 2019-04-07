@@ -14,7 +14,7 @@ function () {
 
     this.timeLimit = 10; // seconds
 
-    this.gameState = null; // start, stop, end, reset
+    this.state = 'reset'; // start, stop, end
 
     this.timer = 0;
     this.timerCount = 0;
@@ -68,7 +68,7 @@ function () {
       if (this.debug) console.log('timerCount', this.timerCount);
 
       if (this.timerCount >= this.timeLimit) {
-        this.end();
+        this.setState('end');
       }
 
       this.timeRemaining();
@@ -90,12 +90,12 @@ function () {
       var _this2 = this;
 
       var squares = document.querySelectorAll('#board .row div');
-      var square = squares[this.randomInteger(0, 8)];
+      var square = squares[this.randomInteger(0, squares.length - 1)];
       this.bindEventListener(square);
       square.className = 'active';
       setTimeout(function () {
         _this2.resetSquare(square);
-      }, this.randomInteger(500, 1000));
+      }, this.randomInteger(500, 1500));
     }
   }, {
     key: "timeRemaining",
@@ -116,100 +116,83 @@ function () {
       });
     }
   }, {
-    key: "buttonsEnd",
-    value: function buttonsEnd() {
+    key: "buttons",
+    value: function buttons() {
       this.buttonsHide();
-      this.setDisplayById('#reset', 'inline-block');
-    }
-  }, {
-    key: "buttonsReset",
-    value: function buttonsReset() {
-      this.buttonsHide();
-      this.setDisplayById('#play', 'inline-block');
-    }
-  }, {
-    key: "buttonsStop",
-    value: function buttonsStop() {
-      this.buttonsHide();
-      this.setDisplayById('#play', 'inline-block');
-      this.setDisplayById('#reset', 'inline-block');
-    }
-  }, {
-    key: "buttonsStart",
-    value: function buttonsStart() {
-      this.buttonsHide();
-      this.setDisplayById('#stop', 'inline-block');
+
+      switch (this.state) {
+        case 'start':
+          return this.setDisplayById('#stop', 'inline-block');
+          break;
+
+        case 'stop':
+          this.setDisplayById('#start', 'inline-block');
+          this.setDisplayById('#reset', 'inline-block');
+          break;
+
+        case 'end':
+          return this.setDisplayById('#reset', 'inline-block');
+
+        case 'reset':
+          return this.setDisplayById('#start', 'inline-block');
+
+        default:
+          break;
+      }
     }
   }, {
     key: "gameTime",
     value: function gameTime() {
-      switch (this.gameState) {
+      if (this.debug) console.log('state', this.state);
+      this.buttons();
+
+      switch (this.state) {
         case 'start':
           this.timeRemaining();
           this.timer = setInterval(this.countDown.bind(this), 1000);
-          this.buttonsStart();
-          if (this.debug) console.log('start');
           break;
 
         case 'stop':
           clearInterval(this.timer);
-          if (this.debug) console.log(this.timer);
-          this.buttonsStop();
-          if (this.debug) console.log('stop');
+          if (this.debug) console.log('timer', this.timer);
           break;
 
         case 'end':
-          clearInterval(this.timer);
-          this.buttonsEnd();
-          if (this.debug) console.log('end');
-          break;
+          return clearInterval(this.timer);
 
         case 'reset':
           clearInterval(this.timer);
           this.timer = 0;
           this.timerCount = 0;
           this.resetScore();
-          this.buttonsReset();
           this.timeRemaining();
-          if (this.debug) console.log('reset');
           break;
 
         default:
-          this.timeRemaining();
-          if (this.debug) console.log('setup');
-          break;
+          return this.timeRemaining();
       }
     }
   }, {
     key: "setup",
     value: function setup() {
+      var _this3 = this;
+
       this.gameTime();
+      document.querySelector('#start').addEventListener('click', function () {
+        _this3.setState('start');
+      });
+      document.querySelector('#stop').addEventListener('click', function () {
+        _this3.setState('stop');
+      });
+      document.querySelector('#reset').addEventListener('click', function () {
+        _this3.setState('reset');
+      });
     }
   }, {
-    key: "setGameState",
-    value: function setGameState(state) {
-      this.gameState = state;
+    key: "setState",
+    value: function setState(state) {
+      this.state = state;
       this.gameTime();
-    }
-  }, {
-    key: "play",
-    value: function play() {
-      this.setGameState('start');
-    }
-  }, {
-    key: "stop",
-    value: function stop() {
-      this.setGameState('stop');
-    }
-  }, {
-    key: "end",
-    value: function end() {
-      this.setGameState('end');
-    }
-  }, {
-    key: "reset",
-    value: function reset() {
-      this.setGameState('reset');
     }
   }]);
 

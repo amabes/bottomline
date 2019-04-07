@@ -1,7 +1,7 @@
 class Game {
   constructor(params) {
     this.timeLimit = 10; // seconds
-    this.gameState = null; // start, stop, end, reset
+    this.state = 'reset'; // start, stop, end
     this.timer = 0;
     this.timerCount = 0;
     this.score = 0;
@@ -46,7 +46,7 @@ class Game {
     if (this.debug) console.log('timerCount', this.timerCount);
 
     if (this.timerCount >= this.timeLimit) {
-      this.end();
+      this.setState('end');
     }
 
     this.timeRemaining();
@@ -63,15 +63,14 @@ class Game {
 
   randomSquare() {
     const squares = document.querySelectorAll('#board .row div');
-    const square = squares[this.randomInteger(0, 8)];
+    const square = squares[this.randomInteger(0, squares.length - 1)];
 
     this.bindEventListener(square);
-
     square.className = 'active';
 
     setTimeout(() => {
       this.resetSquare(square);
-    },this.randomInteger(500, 1000));
+    },this.randomInteger(500, 1500));
   }
 
   timeRemaining() {
@@ -90,85 +89,71 @@ class Game {
     });
   }
 
-  buttonsEnd() {
+  buttons() {
     this.buttonsHide();
-    this.setDisplayById('#reset', 'inline-block');
-  }
 
-  buttonsReset() {
-    this.buttonsHide();
-    this.setDisplayById('#play', 'inline-block');
-  }
-
-  buttonsStop() {
-    this.buttonsHide();
-    this.setDisplayById('#play', 'inline-block');
-    this.setDisplayById('#reset', 'inline-block');
-  }
-
-  buttonsStart() {
-    this.buttonsHide();
-    this.setDisplayById('#stop', 'inline-block');
+    switch(this.state) {
+      case 'start':
+        return this.setDisplayById('#stop', 'inline-block');
+      break;
+      case 'stop':
+        this.setDisplayById('#start', 'inline-block');
+        this.setDisplayById('#reset', 'inline-block');
+      break;
+      case 'end':
+        return this.setDisplayById('#reset', 'inline-block');
+      case 'reset':
+        return this.setDisplayById('#start', 'inline-block');
+      default:
+      break;
+    }
   }
 
   gameTime() {
-    switch(this.gameState) {
+    if (this.debug) console.log('state', this.state);
+
+    this.buttons();
+
+    switch(this.state) {
       case 'start':
         this.timeRemaining();
         this.timer = setInterval(this.countDown.bind(this), 1000);
-        this.buttonsStart();
-        if (this.debug) console.log('start');
       break;
       case 'stop':
         clearInterval(this.timer);
-        if (this.debug) console.log(this.timer);
-        this.buttonsStop();
-        if (this.debug) console.log('stop');
+        if (this.debug) console.log('timer', this.timer);
       break;
       case 'end':
-        clearInterval(this.timer);
-        this.buttonsEnd();
-        if (this.debug) console.log('end');
-      break;
+        return clearInterval(this.timer);
       case 'reset':
         clearInterval(this.timer);
         this.timer = 0;
         this.timerCount = 0;
         this.resetScore();
-        this.buttonsReset();
         this.timeRemaining();
-        if (this.debug) console.log('reset');
       break;
       default:
-        this.timeRemaining();
-        if (this.debug) console.log('setup');
-      break;
+        return this.timeRemaining();
     }
   }
 
   setup() {
     this.gameTime();
+
+    document.querySelector('#start').addEventListener('click', () => {
+      this.setState('start');
+    });
+    document.querySelector('#stop').addEventListener('click', () => {
+      this.setState('stop');
+    });
+    document.querySelector('#reset').addEventListener('click', () => {
+      this.setState('reset');
+    });
   }
 
-  setGameState(state) {
-    this.gameState = state;
+  setState(state) {
+    this.state = state;
     this.gameTime();
-  }
-
-  play() {
-    this.setGameState('start');
-  }
-
-  stop() {
-    this.setGameState('stop');
-  }
-
-  end() {
-    this.setGameState('end');
-  }
-
-  reset() {
-    this.setGameState('reset');
   }
 
 }
