@@ -21,6 +21,7 @@ npm run deploy
 ## Debugging
 
 Pass `{debug:true}` as an argument to `Game`, ex:
+
 ```
 const wackAMole = new Game({debug:true});
 ```
